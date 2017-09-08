@@ -6,10 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CodeTabsPage } from '../pages/code-tabs/code-tabs';
-import { HtmlEditorPage } from '../pages/html-editor/html-editor';
-import { CssEditorPage } from '../pages/css-editor/css-editor';
-import { JsEditorPage } from '../pages/js-editor/js-editor';
-import { ResultViewPage } from '../pages/result-view/result-view';
 
 @Component({
   templateUrl: 'app.html'

@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { ComponentsModule } from '../components/components.module';
+import { ProvidersModule } from '../providers/providers.module';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -16,6 +17,7 @@ import { ResultViewPage } from '../pages/result-view/result-view';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -28,7 +30,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ResultViewPage,
   ],
   imports: [
-    ComponentsModule,    
+    ComponentsModule, 
+    ProvidersModule,   
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: 'Go Back',
@@ -36,7 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
       modalLeave: 'modal-slide-out',
       tabsPlacement: 'top',
       tabsHideOnSubPages : false
-    }),
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,7 +55,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

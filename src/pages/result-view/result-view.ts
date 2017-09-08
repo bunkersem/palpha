@@ -1,12 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ResultViewPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { CodeProvider } from '../../providers/code/code';
 
 @Component({
   selector: 'page-result-view',
@@ -14,11 +8,30 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ResultViewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public element: ElementRef, public navCtrl: NavController, public navParams: NavParams, public code: CodeProvider) {
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultViewPage');
+  ionViewDidEnter () {
+    var resultView: HTMLIFrameElement = this.element.nativeElement.querySelector('#codeResult');
+    var html =
+    `<html>
+      <head>
+        <title>User App</title>
+        <style id="usrCss"></style>
+        <link rel="stylesheet" href="../../assets/test.css">
+        <script type="text/javascript" id="usrJs"></script>        
+      </head>
+      <body id="usrHtml"></body>
+    </html>`;
+    const resDoc = resultView.contentWindow.document;
+    console.log(resDoc);
+    resDoc.open();
+    resDoc.write(html);
+    resDoc.getElementById('usrCss').innerHTML = this.code.cssCode || '';
+    resDoc.getElementById('usrJs').innerHTML = this.code.jsCode || '';
+    resDoc.getElementById('usrHtml').innerHTML = this.code.htmlCode || '';
+    resDoc.close();
   }
 
 }

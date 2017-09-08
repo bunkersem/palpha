@@ -1,37 +1,25 @@
-import { Component, isDevMode } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { CodeProvider } from '../../providers/code/code';
 
 
-/**
- * Generated class for the EditorComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'editor',
-  templateUrl: 'editor.html'
+  templateUrl: 'editor.html',
 })
 export class EditorComponent {
 
-
-  textEditor = 
-  `<h1>Hello World</h1>
-  <p>Wonderfullness</p>`;
-
+  @Input() contentName: string;
   spaces = 4;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public code: CodeProvider) {
+    
   }
 
   keyPressedHandler(event) {
-    if (isDevMode)
-      console.log(event, event.keyCode);
     if (event.keyCode === 9)  // If its a Tab
       this.tabKeyPressedHandler(event);
     else if (event.keyCode === 8) 
       this.backSpaceKeyPressedHandler(event);
-    
   }
 
   tabKeyPressedHandler(event) {
@@ -40,7 +28,6 @@ export class EditorComponent {
 
     var target: HTMLTextAreaElement = event.target.closest('ion-textarea#textEditor textarea');
     var start = target.selectionStart;
-    var end = target.selectionEnd;
     var contentChars = target.value.split('');
     contentChars.splice(start, 0, ' '.repeat(this.spaces));
     target.value = contentChars.join('');
@@ -55,7 +42,7 @@ export class EditorComponent {
       return;
 
     var contentChars = target.value.split('');
-    if (contentChars.slice(start - this.spaces, start).some(c => c !== ' '))
+    if (start < 4 || contentChars.slice(start - this.spaces, start).some(c => c !== ' '))
       return;
     
     // Remove this.spaces amount of spaces.
@@ -65,5 +52,4 @@ export class EditorComponent {
     target.value = contentChars.join('');
     target.selectionStart = target.selectionEnd = start - this.spaces
   }
-
 }

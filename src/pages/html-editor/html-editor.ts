@@ -1,12 +1,6 @@
-import { Component, isDevMode } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the HtmlEditorPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-html-editor',
@@ -26,6 +20,8 @@ export class HtmlEditorPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HtmlEditorPage');
   }
+
+  
 
   
 }

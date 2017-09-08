@@ -6,20 +6,22 @@ import { JsEditorPage } from '../js-editor/js-editor';
 import { ResultViewPage } from '../result-view/result-view';
 
 
-
 @Component({
   templateUrl: 'code-tabs.html',
 })
-export class CodeTabsPage {
+export class CodeTabsPage  {
 
   HTMLEditorRoot = HtmlEditorPage;
   CSSEditorRoot = CssEditorPage;
   JSEditorRoot = JsEditorPage;
   ViewRoot = ResultViewPage;
 
-  constructor() {
 
+  constructor() {
+    
   }
+
+  
 }
 
 /*
